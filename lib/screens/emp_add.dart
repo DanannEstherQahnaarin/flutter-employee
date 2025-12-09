@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_employee/model/employee.dart';
 
 class AddEmp extends StatefulWidget {
-  final Function(Employee) onAddEmp; //Emp Add CallbackFunction
+  final Function(Employee) onAddEmp; // 신규 직원 추가 콜백
 
   const AddEmp({required this.onAddEmp, super.key});
 
@@ -13,6 +13,7 @@ class AddEmp extends StatefulWidget {
 class _AddEmpState extends State<AddEmp> {
   final _formKey = GlobalKey<FormState>();
 
+  // 입력 필드 컨트롤러
   final TextEditingController _txtName = TextEditingController();
   final TextEditingController _txtPhone = TextEditingController();
   final TextEditingController _txtDept = TextEditingController();
@@ -33,6 +34,7 @@ class _AddEmpState extends State<AddEmp> {
           key: _formKey,
           child: ListView(
             children: [
+              // 이름
               TextFormField(
                 controller: _txtName,
                 decoration: InputDecoration(labelText: '이름'),
@@ -44,6 +46,7 @@ class _AddEmpState extends State<AddEmp> {
                   return null;
                 },
               ),
+              // 전화번호
               TextFormField(
                 controller: _txtPhone,
                 decoration: InputDecoration(labelText: '전화번호'),
@@ -55,6 +58,7 @@ class _AddEmpState extends State<AddEmp> {
                   return null;
                 },
               ),
+              // 부서
               TextFormField(
                 controller: _txtDept,
                 decoration: InputDecoration(labelText: '부서'),
@@ -66,6 +70,7 @@ class _AddEmpState extends State<AddEmp> {
                   return null;
                 },
               ),
+              // 사원번호
               TextFormField(
                 controller: _txtEmpNo,
                 decoration: InputDecoration(labelText: '사원번호'),
@@ -77,6 +82,7 @@ class _AddEmpState extends State<AddEmp> {
                   return null;
                 },
               ),
+              // 월급
               TextFormField(
                 controller: _txtSalary,
                 decoration: InputDecoration(labelText: "월급"),
@@ -87,10 +93,12 @@ class _AddEmpState extends State<AddEmp> {
                   return null;
                 },
               ),
+              // 계좌번호
               TextFormField(
                 controller: _txtAccount,
                 decoration: InputDecoration(labelText: "계좌번호"),
               ),
+              // 직급 선택
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(labelText: "직급"),
                 items: _positions.map((pos) {
@@ -101,6 +109,7 @@ class _AddEmpState extends State<AddEmp> {
                 },
               ),
               SizedBox(height: 20),
+              // 저장 버튼
               ElevatedButton(onPressed: _addEmpData, child: Text("Add")),
             ],
           ),
@@ -110,6 +119,7 @@ class _AddEmpState extends State<AddEmp> {
   }
 
   void _addEmpData() {
+    // 폼 검증 후 직원 객체 생성 및 콜백 전달
     if (_formKey.currentState!.validate()) {
       Employee newEmp = Employee(
         name: _txtName.text,
