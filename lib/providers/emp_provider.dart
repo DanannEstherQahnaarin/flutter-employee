@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_employee/model/employee.dart';
 
 class EmployeeProvider extends ChangeNotifier {
-  final List<Employee> _empList = List.empty();
+  final List<Employee> _empList = [];
 
   List<Employee> get empList => _empList;
 
-  void addEmp(Employee e) {
-    _empList.add(e);
+  void addEmp(Employee emp) {
+    _empList.add(emp);
+
     notifyListeners();
   }
 
@@ -18,5 +19,16 @@ class EmployeeProvider extends ChangeNotifier {
 
   Employee detailEmp(int empNo) {
     return _empList.singleWhere((x) => x.empNo == empNo);
+  }
+
+  Employee updateEmp(int empNo, Employee emp) {
+    final index = _empList.indexWhere((x) => x.empNo == empNo);
+    if (index != -1) {
+      _empList[index] = emp;
+      notifyListeners();
+      return emp;
+    }
+
+    throw Exception('Employee with empNo $empNo not found');
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_employee/model/employee.dart';
 import 'package:flutter_employee/providers/emp_provider.dart';
+import 'package:flutter_employee/screens/emp_add.dart';
 import 'package:provider/provider.dart';
 
 class EmployeeList extends StatelessWidget {
@@ -32,10 +34,19 @@ class EmployeeList extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Placeholder()),
+            MaterialPageRoute(
+              builder: (_) => AddEmp(
+                onAddEmp: (Employee emp) {
+                  Provider.of<EmployeeProvider>(
+                    context,
+                    listen: false,
+                  ).addEmp(emp);
+                },
+              ),
+            ),
           );
         },
-        child: Icon(Icons.plus_one),
+        child: Icon(Icons.add),
       ),
     );
   }
