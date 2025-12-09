@@ -11,6 +11,7 @@ class UpdateEmp extends StatefulWidget {
 }
 
 class _UpdateEmpEmpState extends State<UpdateEmp> {
+  // 폼 검증 키
   final _formKey = GlobalKey<FormState>();
 
   // 입력 필드 컨트롤러
@@ -132,8 +133,10 @@ class _UpdateEmpEmpState extends State<UpdateEmp> {
   }
 
   Future<void> _updateEmpData() async {
+    // 입력 검증
     if (!_formKey.currentState!.validate()) return;
 
+    // 수정 확인 팝업
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -154,6 +157,7 @@ class _UpdateEmpEmpState extends State<UpdateEmp> {
 
     if (confirm != true) return;
 
+    // 수정 데이터 생성
     Employee updateEmp = Employee(
       name: _txtName.text,
       phone: _txtPhone.text,
