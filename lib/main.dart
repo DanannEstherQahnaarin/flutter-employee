@@ -4,6 +4,7 @@ import 'package:flutter_employee/screens/emp_list.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  // Provider 설정 및 앱 시작
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => EmployeeProvider())],
