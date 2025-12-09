@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_employee/model/employee.dart';
 
 class EmployeeProvider extends ChangeNotifier {
-  final List<Employee> _empList = [];
+  // growable 리스트를 명시적으로 사용해 add/remove 시 예외를 방지
+  final List<Employee> _empList = List<Employee>.empty(growable: true);
 
   List<Employee> get empList => _empList;
 
