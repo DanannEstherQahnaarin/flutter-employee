@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_employee/model/employee.dart';
 import 'package:flutter_employee/providers/emp_provider.dart';
+import 'package:flutter_employee/screens/emp_update.dart';
 import 'package:provider/provider.dart';
 
 class DetailEmp extends StatefulWidget {
@@ -109,11 +110,34 @@ class _DetailEmpState extends State<DetailEmp> {
               child: Text('직급 : ${emp.position}'),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
+            Row(children: [
+              ElevatedButton(
+                // 수정 화면 이동 후 업데이트 확인
+                onPressed: () async {
+                  final updatedEmp = await Navigator.push<Employee>(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => UpdateEmp(
+                        employee: emp,
+                        onUpdateEmp: (Employee updated) {
+                          Navigator.pop(context, updated);
+                        },
+                      ),
+                    ),
+                  );
+
+                  if (!mounted || updatedEmp == null) return;
+                  _updateEmpData(emp.empNo, updatedEmp);
+                },
+                child: Text("Update"),
+              ),
+              ElevatedButton(
               // 삭제 확인 팝업 호출
               onPressed: () => _confirmRemove(emp.empNo),
               child: Text("Deleted"),
             ),
+            ],)
+            
           ],
         ),
       ),
@@ -143,6 +167,15 @@ class _DetailEmpState extends State<DetailEmp> {
     if (result == true) {
       _removeEmpData(empNo);
     }
+  }
+
+  Future<void> _updateEmpData(int empNo, Employee updatedEmp) async {
+    final provider = Provider.of<EmployeeProvider>(
+      context,
+      listen: false,
+    );
+    provider.updateEmp(empNo, updatedEmp);
+    setState(() {}); // Yes 선택 시 상세 화면 갱신
   }
 
   void _removeEmpData(int empNo) {
