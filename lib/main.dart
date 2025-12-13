@@ -3,37 +3,41 @@ import 'package:flutter_employee/providers/emp_provider.dart';
 import 'package:flutter_employee/screens/emp_list.dart';
 import 'package:provider/provider.dart';
 
+// 프로그램의 진입점인 main 함수 정의
 void main() {
-  // Provider 설정 및 앱 시작
+  // runApp 함수로 전체 플러터 앱 실행
   runApp(
+    // MultiProvider는 여러 Provider를 한 번에 하위 위젯 트리에 주입할 수 있도록 함
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => EmployeeProvider())],
+      // ChangeNotifierProvider: EmployeeProvider 인스턴스를 제공함 (사원 관리 상태 관리)
+      providers: [
+        ChangeNotifierProvider(create: (_) => EmployeeProvider()),
+      ],
+      // 실제 앱 트리 구조의 루트 위젯으로 MyWidget 사용
       child: const MyWidget(),
     ),
   );
 }
 
+// 앱의 루트 위젯: StatelessWidget 상속
 class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+  const MyWidget({super.key}); // 생성자 (불변 위젯)
 
   @override
   Widget build(BuildContext context) {
+    // 전체 앱 구조는 MaterialApp으로 래핑됨
     return MaterialApp(
-      // 디버그 태그 표시
+      // 디버그 배너 비활성화
       debugShowCheckedModeBanner: false,
-      // 앱의 한 줄 설명
+      // 앱 타이틀 설정
       title: 'Employee Manager',
-      // 앱의 테마 지정
+      // 앱의 테마 설정
       theme: ThemeData(
-        // 상호작용 요소에 사용되는 색상
-        brightness: Brightness.light,
-        // 앱의 주요부분 배경 색 (앱바, 탭바 등)
-        primaryColor: Colors.greenAccent,
-
-        // 앱에 기본으로 사용될 폰트
-        fontFamily: 'IBM-Sans',
+        brightness: Brightness.light, // 밝은 테마 적용
+        primaryColor: Colors.greenAccent, // 주요 색상 지정
+        fontFamily: 'IBM-Sans', // 폰트 패밀리 지정
       ),
-      // MaterialApp의 기본 경로로 앱 실행 시 가장 먼저 볼 수 있는 화면
+      // 첫 번째로 띄울 화면: EmployeeList 위젯
       home: EmployeeList(),
     );
   }
