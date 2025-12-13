@@ -132,6 +132,7 @@ class _UpdateEmpEmpState extends State<UpdateEmp> {
               // ----- 직급 선택 필드 (드롭다운) -----
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(labelText: "직급"),
+                initialValue: _selectPosition,
                 items: _positions.map((pos) {
                   // 직급 목록에서 각 항목을 드롭다운 메뉴 아이템으로 생성
                   return DropdownMenuItem(value: pos, child: Text(pos));
@@ -140,7 +141,6 @@ class _UpdateEmpEmpState extends State<UpdateEmp> {
                 onChanged: (value) {
                   _selectPosition = value ?? "사원";
                 },
-                value: _selectPosition, // 현재 선택값 유지
               ),
               SizedBox(height: 20), // 입력란과 버튼 간격
               // ----- 저장(수정확정) 버튼 -----
