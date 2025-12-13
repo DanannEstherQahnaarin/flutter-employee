@@ -19,12 +19,23 @@ class _AddEmpState extends State<AddEmp> {
   final _formKey = GlobalKey<FormState>();
 
   // 각 입력 필드를 위한 TextEditingController 선언
-  final TextEditingController _txtName = TextEditingController();     // 이름
-  final TextEditingController _txtPhone = TextEditingController();    // 전화번호
-  final TextEditingController _txtDept = TextEditingController();     // 부서
-  final TextEditingController _txtEmpNo = TextEditingController();    // 사원번호
-  final TextEditingController _txtSalary = TextEditingController();   // 월급
-  final TextEditingController _txtAccount = TextEditingController();  // 계좌번호
+  final TextEditingController _txtName = TextEditingController(); // 이름
+  final TextEditingController _txtPhone = TextEditingController(); // 전화번호
+  final TextEditingController _txtDept = TextEditingController(); // 부서
+  final TextEditingController _txtEmpNo = TextEditingController(); // 사원번호
+  final TextEditingController _txtSalary = TextEditingController(); // 월급
+  final TextEditingController _txtAccount = TextEditingController(); // 계좌번호
+
+  @override
+  void dispose() {
+    _txtName.dispose();
+    _txtPhone.dispose();
+    _txtDept.dispose();
+    _txtEmpNo.dispose();
+    _txtSalary.dispose();
+    _txtAccount.dispose();
+    super.dispose();
+  }
 
   // 직급 선택 값의 초기값 (기본값: 사원)
   String _selectPosition = "사원";
@@ -149,8 +160,8 @@ class _AddEmpState extends State<AddEmp> {
         name: _txtName.text,
         phone: _txtPhone.text,
         dept: _txtDept.text,
-        empNo: int.parse(_txtEmpNo.text),       // 사원번호: 정수형 변환
-        salary: int.parse(_txtSalary.text),     // 월급: 정수형 변환
+        empNo: int.parse(_txtEmpNo.text), // 사원번호: 정수형 변환
+        salary: int.parse(_txtSalary.text), // 월급: 정수형 변환
         account: _txtAccount.text,
         position: _selectPosition,
       );

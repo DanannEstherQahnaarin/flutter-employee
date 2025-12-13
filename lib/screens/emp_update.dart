@@ -22,11 +22,11 @@ class _UpdateEmpEmpState extends State<UpdateEmp> {
   final _formKey = GlobalKey<FormState>();
 
   // 각 입력 필드 별 입력값 제어 및 초기값 설정을 위한 컨트롤러
-  final TextEditingController _txtName = TextEditingController();    // 이름
-  final TextEditingController _txtPhone = TextEditingController();   // 전화번호
-  final TextEditingController _txtDept = TextEditingController();    // 부서
-  final TextEditingController _txtEmpNo = TextEditingController();   // 사원번호
-  final TextEditingController _txtSalary = TextEditingController();  // 월급
+  final TextEditingController _txtName = TextEditingController(); // 이름
+  final TextEditingController _txtPhone = TextEditingController(); // 전화번호
+  final TextEditingController _txtDept = TextEditingController(); // 부서
+  final TextEditingController _txtEmpNo = TextEditingController(); // 사원번호
+  final TextEditingController _txtSalary = TextEditingController(); // 월급
   final TextEditingController _txtAccount = TextEditingController(); // 계좌번호
 
   String _selectPosition = "사원"; // 선택된 직급 값 (기본값: 사원)
@@ -43,6 +43,17 @@ class _UpdateEmpEmpState extends State<UpdateEmp> {
     _txtSalary.text = widget.employee.salary.toString();
     _txtAccount.text = widget.employee.account;
     _selectPosition = widget.employee.position;
+  }
+
+  @override
+  void dispose() {
+    _txtName.dispose();
+    _txtPhone.dispose();
+    _txtDept.dispose();
+    _txtEmpNo.dispose();
+    _txtSalary.dispose();
+    _txtAccount.dispose();
+    super.dispose();
   }
 
   @override
@@ -156,8 +167,8 @@ class _UpdateEmpEmpState extends State<UpdateEmp> {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('수정 확인'),                     // 다이얼로그 타이틀
-        content: Text('수정하시겠습니까?'),         // 안내 메시지
+        title: Text('수정 확인'), // 다이얼로그 타이틀
+        content: Text('수정하시겠습니까?'), // 안내 메시지
         actions: [
           // No 버튼: 취소
           TextButton(
