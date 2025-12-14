@@ -5,6 +5,17 @@ import 'package:flutter_employee/screens/emp_update.dart';
 import 'package:provider/provider.dart';
 
 // 직원 상세 정보를 표시하고 수정/삭제 기능을 제공하는 StatefulWidget
+/// 직원 상세(Detail) 화면을 위한 StatefulWidget 클래스입니다.
+/// 
+/// 기능:
+/// - 전달받은 직원 사번(detailEmpNo)에 해당하는 직원(Employee) 정보를 화면에 상세히 출력합니다.
+/// - 직원 상세 정보(이름, 전화번호, 부서, 사번, 월급, 계좌번호, 직급 등)를 카드 형태로 표시합니다.
+/// - 상단 AppBar, 수정 및 삭제 기능 버튼을 제공합니다.
+/// - 삭제 시 onRemoveEmp 콜백을 통해 부모 위젯에 변경 사항을 전달합니다.
+/// 
+/// 필수 파라미터:
+/// - [onRemoveEmp]: 직원 삭제 시 호출되는 콜백 함수
+/// - [detailEmpNo]: 상세 조회를 위한 직원 고유 사번
 class DetailEmp extends StatefulWidget {
   final Function(Employee) onRemoveEmp; // 직원 삭제 시 부모에게 알리기 위한 콜백
   final int detailEmpNo; // 상세조회를 위한 직원번호

@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_employee/model/employee.dart';
 
 // 직원 추가 화면을 위한 StatefulWidget 정의
+/// 직원 추가(AddEmp) 화면을 위한 StatefulWidget입니다.
+/// 
+/// 주요 기능:
+/// - 사용자가 신규 직원(Employee) 정보를 입력할 수 있는 폼을 제공합니다.
+/// - 입력 완료 시 검증을 수행하고, 유효하면 부모 위젯에 직원 객체를 콜백(onAddEmp)으로 전달합니다.
+/// - 각 입력 필드는 이름, 전화번호, 부서, 사번, 월급, 계좌번호, 직급(드롭다운 선택)으로 구성됩니다.
+/// - 폼 입력값의 유효성을 검사해 올바르지 않은 경우 사용자에게 메시지를 표시합니다.
+/// 
+/// 필수 파라미터:
+/// - [onAddEmp]: 신규 직원 정보가 입력(추가)되었을 때 Employee 객체를 전달받는 콜백 함수
 class AddEmp extends StatefulWidget {
-  // 신규 직원 추가 시 부모 위젯에 결과를 전달할 콜백 함수
+  /// 신규 직원 추가 시 부모 위젯에 결과를 전달할 콜백 함수
   final Function(Employee) onAddEmp;
 
-  // 생성자, 콜백 함수는 필수(required)
+  /// 생성자: 콜백 함수 [onAddEmp]는 필수(required)
   const AddEmp({required this.onAddEmp, super.key});
 
   @override

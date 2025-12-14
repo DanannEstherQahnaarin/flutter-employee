@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_employee/model/employee.dart';
 
 /// 직원 정보 수정 화면을 제공하는 StatefulWidget
+/// 직원 정보 수정(Update) 화면을 제공하는 StatefulWidget 클래스입니다.
+/// 
+/// 주요 역할 및 기능:
+/// - 기존 직원(Employee) 정보를 전달받아, 수정 가능한 입력 폼을 화면에 제공합니다.
+/// - 각 입력 필드(이름, 전화번호, 부서, 사번, 월급, 계좌번호, 직급)는 기본값으로 기존 직원 데이터를 보여주고, 사용자가 이를 수정할 수 있도록 구성됩니다.
+/// - 사용자가 입력한 값을 검증(Form validation)하고, 유효성 통과 시 콜백(onUpdateEmp)을 통해 수정된 Employee 객체를 상위 위젯에 전달합니다.
+/// - State 클래스(_UpdateEmpEmpState)와 연계하여 폼 제어 및 입력값 상태 관리를 담당합니다.
 class UpdateEmp extends StatefulWidget {
   final Function(Employee) onUpdateEmp; // 직원 수정 완료시 상위에 수정된 Employee 전달용 콜백
   final Employee employee; // 수정 대상으로 전달받은 직원 정보
