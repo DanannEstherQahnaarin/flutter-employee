@@ -4,6 +4,9 @@ import 'package:flutter_employee/screens/emp_list.dart';
 import 'package:provider/provider.dart';
 
 // 프로그램의 진입점인 main 함수 정의
+/// 프로그램 실행의 진입점(main 함수)
+/// - Flutter 앱의 구동을 시작하며, Provider 상태 관리를 위한 MultiProvider 트리를 최상위에 구성합니다.
+/// - 전역적으로 EmployeeProvider를 ChangeNotifierProvider로 주입하여, 하위 위젯에서 직원 데이터 관리 및 참조가 가능하도록 합니다.
 void main() {
   // runApp 함수로 전체 플러터 앱 실행
   runApp(
